@@ -10,7 +10,7 @@ const options = {
     return cheerio.load(body)
   }
 }
-const urls = ['https://qiita.com/']
+const urls = [process.env.QIITA_WEB_URL]
 const promises = urls.map((url) => {
   return (async () => {
     try {
@@ -24,7 +24,7 @@ const promises = urls.map((url) => {
 })
 
 Promise.all(promises).then((result) => {
-    const domain = "https://qiita.com/"
+    const domain = process.env.QIITA_WEB_URL
     const list = JSON.parse(result[0][0].data)
     const nodeList = list.trend.edges
     const blocks = [
@@ -43,10 +43,13 @@ Promise.all(promises).then((result) => {
     now.setTime(now.getTime() + (9 * 60 * 60 * 1000))
 
     nodeList.map(function (node, index) {
+      let dt = new Date(node.node.createdAt)
+      console.log(dt, dt.toLocaleString('ja'))
+
       const diffDate = Math.round(
         (now - new Date(node.node.createdAt))  / (24 * 60 * 60 * 1000)
       )
-      const title = `*<${node.node.linkUrl}|${index + 1}. ${(node.isNewArrival ? ':new: ' : '') + node.node.title}>*`
+      const title = `*<${node.node.linkUrl}|${node.isNewArrival ? ':new:' : ''} ${index + 1}. ${node.node.title}>*`
       const author = `_<${domain}${node.node.author.urlName}|${node.node.author.urlName}>_`
 
       if (index < 10) {
