@@ -23,7 +23,7 @@ const promises = urls.map((url) => {
   })()
 })
 
-Promise.all(promise).then((result) => {
+Promise.all(promises).then((result) => {
     const domain = "https://qiita.com/"
     const list = JSON.parse(result[0][0].data)
     const nodeList = list.trend.edges
