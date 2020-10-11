@@ -1,0 +1,29 @@
+name: qiita-trend-bot
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - name: Checkout
+        uses: github/actions@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Exec code
+        run: node src/index.js
+        env:
+          WEB_HOOK_URL: ${{ secrets.WEB_HOOK_URL }}
+
