@@ -43,14 +43,9 @@ Promise.all(promises).then((result) => {
     now.setTime(now.getTime() + (9 * 60 * 60 * 1000))
 
     nodeList.map(function (node, index) {
-      let dt = new Date(node.node.createdAt)
-      console.log(dt, dt.toLocaleString('ja'))
-
-      const diffDate = Math.round(
-        (now - new Date(node.node.createdAt))  / (24 * 60 * 60 * 1000)
-      )
+      const dt = new Date(node.node.createdAt)
       const title = `*<${node.node.linkUrl}|${node.isNewArrival ? ':new:' : ''} ${index + 1}. ${node.node.title}>*`
-      const author = `_<${domain}${node.node.author.urlName}|${node.node.author.urlName}>_`
+      const author = `<${domain}${node.node.author.urlName}|${node.node.author.urlName}>`
 
       if (index < 10) {
         blocks.push(
@@ -58,7 +53,7 @@ Promise.all(promises).then((result) => {
             type: "section",
             text: {
               type: "mrkdwn",
-              text: `${title}\n:pencil: written by ${author}\n:+1: ${node.node.likesCount} LGTMs\n:alarm_clock: posted ${diffDate} days ago`
+              text: `${title}\n:art: _Written by ${author}_\n:+1: _${node.node.likesCount} LGTMs_\n:alarm_clock: _Posted ${dt.toLocaleString('ja')}_`
             },
             accessory: {
               type: "image",
