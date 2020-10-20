@@ -30,4 +30,3 @@ jobs:
           WEB_HOOK_URL: ${{ secrets.WEB_HOOK_URL }}
           QIITA_WEB_URL: ${{ secrets.QIITA_WEB_URL }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
-
