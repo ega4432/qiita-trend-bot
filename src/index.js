@@ -39,11 +39,9 @@ Promise.all(promises).then((result) => {
         type: "divider"
       }
     ]
-    let now = new Date()
-    now.setTime(now.getTime() + (9 * 60 * 60 * 1000))
 
     nodeList.map(function (node, index) {
-      const dt = new Date(node.node.createdAt)
+      const createdAt = new Date(node.node.createdAt)
       const title = `*<${node.node.linkUrl}|${node.isNewArrival ? ':new:' : ''} ${index + 1}. ${node.node.title}>*`
       const author = `<${domain}${node.node.author.urlName}|${node.node.author.urlName}>`
 
@@ -53,7 +51,7 @@ Promise.all(promises).then((result) => {
             type: "section",
             text: {
               type: "mrkdwn",
-              text: `${title}\n:art: _Written by ${author}_\n:+1: _${node.node.likesCount} LGTMs_\n:alarm_clock: _Posted ${dt.toLocaleString('ja')}_`
+              text: `${title}\n:art: _Written by ${author}_\n:+1: _${node.node.likesCount} LGTMs_\n:alarm_clock: _Posted ${createdAt.toLocaleString('ja')}_`
             },
             accessory: {
               type: "image",
@@ -85,10 +83,10 @@ async function postSlack(blocks) {
   const payload = { name: 'Qiita トレンド', channel: process.env.CHANNEL_ID, blocks }
   const response = await axios.post(process.env.WEB_HOOK_URL, JSON.stringify(payload))
     .then(()  => {
-      // Todo
+      console.log('notification has been successfully.')
     })
     .catch((e) => {
       console.log(e)
-    }) 
+    })
   return response
 }
