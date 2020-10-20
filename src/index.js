@@ -15,8 +15,7 @@ const promises = urls.map((url) => {
   return (async () => {
     try {
       const $ = await rp.get(url, options)
-      const elm = $('script[data-component-name="HomeArticleTrendFeed"]')[0]['children']
-      return elm
+      return $('script[data-component-name="HomeArticleTrendFeed"]')[0]['children']
     } catch(e) {
       console.error('Error: ', e)
     }
@@ -43,7 +42,7 @@ Promise.all(promises).then((result) => {
     nodeList.map(function (node, index) {
       const createdAt = new Date(node.node.createdAt)
       const title = `*<${node.node.linkUrl}|${node.isNewArrival ? ':new:' : ''} ${index + 1}. ${node.node.title}>*`
-      const author = `<${domain}${node.node.author.urlName}|${node.node.author.urlName}>`
+      const author = `<${domain}/${node.node.author.urlName}|${node.node.author.urlName}>`
 
       if (index < 10) {
         blocks.push(
