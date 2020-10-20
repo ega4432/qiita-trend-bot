@@ -1,6 +1,8 @@
 name: qiita-trend-bot
 
-on: [push]
+on:
+  schedule:
+  - cron:  '00 19 * * 3' # 毎週水曜の 10:00 AM
 
 jobs:
   build:
@@ -26,4 +28,6 @@ jobs:
         run: node src/index.js
         env:
           WEB_HOOK_URL: ${{ secrets.WEB_HOOK_URL }}
+          QIITA_WEB_URL: ${{ secrets.QIITA_WEB_URL }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
 
