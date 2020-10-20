@@ -82,7 +82,7 @@ Promise.all(promises).then((result) => {
 })
 
 async function postSlack(blocks) {
-  const payload = { name: 'Qiita トレンド', channel: 'DTEN4T79S', blocks }
+  const payload = { name: 'Qiita トレンド', channel: process.env.CHANNEL_ID, blocks }
   const response = await axios.post(process.env.WEB_HOOK_URL, JSON.stringify(payload))
     .then(()  => {
       // Todo
