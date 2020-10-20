@@ -89,6 +89,6 @@ async function postSlack(blocks) {
     })
     .catch((e) => {
       console.log(e)
-    })
+    }) 
   return response
 }
