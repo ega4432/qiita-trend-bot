@@ -2,7 +2,7 @@ name: qiita-trend-bot
 
 on:
   schedule:
-  - cron:  '00 19 * * 3' # 毎週水曜の 10:00 AM
+  - cron:  '0 19 * * 3' # 毎週水曜の 10:00 AM
 
 jobs:
   build:
