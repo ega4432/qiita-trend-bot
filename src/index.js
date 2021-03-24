@@ -40,7 +40,7 @@ Promise.all(promises).then((result) => {
     ]
 
     nodeList.map(function (node, index) {
-      const createdAt = new Date(node.node.createdAt)
+      const createdAt = new Date(node.node.publishedAt)
       const title = `*<${node.node.linkUrl}|${node.isNewArrival ? ':new:' : ''} ${index + 1}. ${node.node.title}>*`
       const author = `<${domain}/${node.node.author.urlName}|${node.node.author.urlName}>`
 
