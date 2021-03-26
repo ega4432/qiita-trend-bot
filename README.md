@@ -1,6 +1,6 @@
 # qiita-trend-bot
 
-![notification](https://github.com/yossiee/qiita-trend-bot/workflows/notification/badge.svg)
+![notification](https://github.com/ysmtegsr/qiita-trend-bot/workflows/notification/badge.svg)
 
 ## Overview
 
@@ -22,4 +22,4 @@ The mechanism is to scrape the website and get the DOM. From there, format the d
 
 ## License
 
-Have a look at [this](https://github.com/yossiee/qiita-trend-bot/blob/master/LICENSE).
+Have a look at [this](https://github.com/ysmtegsr/qiita-trend-bot/blob/master/LICENSE).
